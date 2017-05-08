@@ -509,8 +509,6 @@ public class FCYBA {
     }
 
     private static void coachPlayerProfile(Team team){
-        //TODO should show players first.
-        //TODO same as player profile, but from coach.
         LinkedList<Player> playerList = team.getPlayers();
         int choice = -1;
 
