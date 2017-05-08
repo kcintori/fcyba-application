@@ -150,7 +150,7 @@ public class FCYBA {
         {
             JPanel fields= new JPanel();
             JTextField usernameField = new JTextField(10);
-            JTextField passwordField = new JTextField(10);
+            JTextField passwordField = new JPasswordField(10);
             fields.add(new JLabel("Username:"));
             fields.add(usernameField);
             fields.add(new JLabel("\nPassword:"));
