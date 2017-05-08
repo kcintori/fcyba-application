@@ -254,7 +254,6 @@ public class FCYBA {
     }
 
     private static void reports(Team team){
-        //TODO definitely need to change/check logic, but wanted to have something to start
         int menuChoice = -1;
         String output = "";
         LinkedList<Player> playerList = team.getPlayers();
@@ -296,11 +295,11 @@ public class FCYBA {
             output += "Sorted on player name:\n\n";
             output += "Player name | Games played | Points scored | Assists | Rebounds | Steals\n";
 
-            for(int i = 0; i < playerList.size(); i++){
+            /*for(int i = 0; i < playerList.size(); i++){
                 output += (i+1) + ". " + playerList.get(i).getPName() + " | " + playerList.get(i).getGamesPlayed() + " | "
                         + playerList.get(i).getPoints() + " | "  + playerList.get(i).getAssists() + " | "
                         + playerList.get(i).getRebounds() + " | " + playerList.get(i).getSteals() + "\n";
-            }
+            }*/
         }
         else if(menuChoice == 2){
             /**
@@ -319,11 +318,11 @@ public class FCYBA {
             output += "Sorted on player's points scored:\n\n";
             output += "Player name | Games played | Points scored | Assists | Rebounds | Steals\n";
 
-            for(int i = 0; i < playerList.size(); i++){
+            /*for(int i = 0; i < playerList.size(); i++){
                 output += (i+1) + ". " + playerList.get(i).getPName() + " | " + playerList.get(i).getGamesPlayed() + " | "
                         + playerList.get(i).getPoints() + " | "  + playerList.get(i).getAssists() + " | "
                         + playerList.get(i).getRebounds() + " | " + playerList.get(i).getSteals() + "\n";
-            }
+            }*/
         }
         else if(menuChoice == 3){
             /**
@@ -342,11 +341,17 @@ public class FCYBA {
             output += "Sorted on player's number of games played:\n\n";
             output += "Player name | Games played | Points scored | Assists | Rebounds | Steals\n";
 
-            for(int i = 0; i < playerList.size(); i++){
+            /*for(int i = 0; i < playerList.size(); i++){
                 output += (i+1) + ". " + playerList.get(i).getPName() + " | " + playerList.get(i).getGamesPlayed() + " | "
                         + playerList.get(i).getPoints() + " | "  + playerList.get(i).getAssists() + " | "
                         + playerList.get(i).getRebounds() + " | " + playerList.get(i).getSteals() + "\n";
-            }
+            }*/
+        }
+
+        for(int i = 0; i < playerList.size(); i++){
+            output += (i+1) + ". " + playerList.get(i).getPName() + " | " + playerList.get(i).getGamesPlayed() + " | "
+                    + playerList.get(i).getPoints() + " | "  + playerList.get(i).getAssists() + " | "
+                    + playerList.get(i).getRebounds() + " | " + playerList.get(i).getSteals() + "\n";
         }
 
         JOptionPane.showMessageDialog(null, output);
@@ -506,6 +511,29 @@ public class FCYBA {
     private static void coachPlayerProfile(Team team){
         //TODO should show players first.
         //TODO same as player profile, but from coach.
+        LinkedList<Player> playerList = team.getPlayers();
+        int choice = -1;
+
+        String output = "Please select the player you want to edit:\n\n";
+        for(int i = 0; i < playerList.size(); i++){
+            output += (i+1) + ". " + playerList.get(i).getPName() + " | " + playerList.get(i).getPlayerEmail() + "\n";
+        }
+
+        while(!(choice >= 1 && choice <= playerList.size())) {
+            try {
+                choice = Integer.parseInt(JOptionPane.showInputDialog(output));
+
+                if (!(choice >= 1 && choice <= playerList.size())) {
+                    choice = -1;
+                    JOptionPane.showMessageDialog(null, "Please enter the number of a player on the list.");
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid number.");
+            }
+        }
+
+        playerProfile(playerList.get(choice-1));
+
     }
 
     private static void teamInfo(Team team){
@@ -633,10 +661,10 @@ public class FCYBA {
 
         try{
             do{
-                menuChoice = Integer.parseInt(JOptionPane.showInputDialog("Welcome " + player.getPName() + ", \n\n"
+                menuChoice = Integer.parseInt(JOptionPane.showInputDialog("Welcome to " + player.getPName() + "'s profile, \n\n"
                         + "Please select an option: \n"
-                        + "1. View your profile. \n"
-                        + "2. Edit your profile."));
+                        + "1. View profile. \n"
+                        + "2. Edit profile."));
                 if(menuChoice != 1 && menuChoice != 2)
                     JOptionPane.showMessageDialog(null, "Please enter either a '1' or a '2'");
             }while(menuChoice != 1 && menuChoice != 2);
@@ -672,9 +700,7 @@ public class FCYBA {
 
             if(menuChoice == 1){
                 do{
-                    input = JOptionPane.showInputDialog("Please enter the new name you would like to use:\n\n" +
-                            "(your email address will also be changed for log on - it will be first digit of first name\n and " +
-                            "all of the last name. Lowercase.)");
+                    input = JOptionPane.showInputDialog("Please enter the new name you would like to use:\n\n");
 
                     if(input.length() <= 0)
                         JOptionPane.showMessageDialog(null, "Please enter a name at least one character long.");
@@ -743,7 +769,7 @@ public class FCYBA {
                 player.setSteals(num);
             }
 
-            JOptionPane.showMessageDialog(null, "Here is your new information: \n\n" + player.toString());
+            JOptionPane.showMessageDialog(null, "Here is the new information: \n\n" + player.toString());
         }
     }
 
