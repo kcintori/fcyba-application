@@ -13,8 +13,7 @@ import java.util.Scanner;
  * Spring 2017
  */
 public class FCYBA {
-    public static void main (String[] args)
-    {
+    public static void main (String[] args) {
         JOptionPane.showMessageDialog(null, "*TESTING INSTRUCTIONS*  \n\n" +
                 "If you are logging in as a coach: \n" +
                 "Coach Username: jsaunders@coaches.com \n" +
@@ -96,9 +95,9 @@ public class FCYBA {
 
     }
 
-    private static void saveUserData(Team team, LinkedList<Player> players) {
-        String playerData = "./src//main/player_data.txt";
-        String teamData = "./src/main/team_data.txt";
+    private static void saveUserData(Team team) {
+        String playerData = "./src//main/player_data_save.txt";
+        String teamData = "./src/main/team_data_save.txt";
 
         /**
          * To write to the player_data.txt file.
@@ -404,7 +403,7 @@ public class FCYBA {
         else
         {
             JOptionPane.showMessageDialog(null, "You have been successfully logged out. \n Have a great day.");
-            saveUserData(team, players);
+            saveUserData(team);
             System.exit(0);
         }
     }
@@ -647,7 +646,7 @@ public class FCYBA {
         else
         {
             JOptionPane.showMessageDialog(null, "You have been successfully logged out. \n Have a great day.");
-            saveUserData(team, players);
+            saveUserData(team);
             System.exit(0);
         }
     }
